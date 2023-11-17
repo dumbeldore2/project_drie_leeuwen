@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     //gaat naar mainactivty2 in de admin mode
     public void clic_fun2(){
         textView2.setOnClickListener(new View.OnClickListener() {
