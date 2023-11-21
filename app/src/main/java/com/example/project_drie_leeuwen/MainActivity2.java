@@ -22,6 +22,7 @@ public class MainActivity2 extends AppCompatActivity {
         button = findViewById(R.id.button);
         button2 = findViewById(R.id.button2);
 
-
+        listView = findViewById(R.id.list);
+        textView = findViewById(R.id.text1);
     }
 }
