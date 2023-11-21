@@ -12,10 +12,14 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/text1"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:text="mode = "
-            android:gravity="center"/>
+            android:gravity="center"
+
+            android:visibility="gone"/>
 
         <ListView
             android:id="@+id/list"
@@ -27,7 +31,10 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add new item"/>
+            android:text="add new item"
+
+
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/button2"

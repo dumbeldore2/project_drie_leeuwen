@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+                intent.putExtra("mode","user");
                 startActivity(intent);
             }
         });
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+                intent.putExtra("mode","admin");
                 startActivity(intent);
             }
         });
