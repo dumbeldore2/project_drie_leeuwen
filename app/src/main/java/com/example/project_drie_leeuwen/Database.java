@@ -1,5 +1,6 @@
 package com.example.project_drie_leeuwen;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -36,5 +37,16 @@ public class Database extends SQLiteOpenHelper {
     //dropt aude versie en zet nieuwe in de plaats
     @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_1);
+    }
+
+    //add function
+    public void addToTable1(String main, String next){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(T1C1,main);
+        contentValues.put(T1C2,next);
+
+        sqLiteDatabase.insert(DATABASE_TABLE_1,null,contentValues);
     }
 }
