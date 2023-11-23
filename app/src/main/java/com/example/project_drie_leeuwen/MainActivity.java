@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    //init database
+    Database database;
 
     //init variabelen
     TextView textView1,textView2;//textviews
@@ -17,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //database maken als deze nog niet gemaakt is
+        database = new Database(this);
+        //check database
+        System.out.println("werkt het ?");
 
         //varibelen initen
         textView1 = findViewById(R.id.text1);//user textview
