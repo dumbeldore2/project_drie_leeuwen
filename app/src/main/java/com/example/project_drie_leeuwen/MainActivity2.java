@@ -10,6 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
+    //init database
+    Database database;
+
     //init de layouts
     Button button, button2;
     ListView listView;
@@ -23,6 +26,9 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        //conect database
+        database = new Database(this);
+
         //conect layouts
         button = findViewById(R.id.button);
         button2 = findViewById(R.id.button2);
@@ -32,13 +38,16 @@ public class MainActivity2 extends AppCompatActivity {
 
         //intent
         Intent intent = getIntent();
-        System.out.println(intent.getStringExtra("mode"));
+        //test - System.out.println(intent.getStringExtra("mode"));
         mode = intent.getStringExtra("mode");
 
         //functions
-        System.out.println(mode);
+        //test - System.out.println(mode);
         check_mode(mode);
         add_item_button();
+        for (int i = 0; i < database.t1c0().length; i++){
+            System.out.println(database.t1c0()[i]);
+        }
     }
 
     public void check_mode(String mode){
