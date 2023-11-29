@@ -38,6 +38,7 @@ public class MainActivity2 extends AppCompatActivity {
         //functions
         System.out.println(mode);
         check_mode(mode);
+        add_item_button();
     }
 
     public void check_mode(String mode){
@@ -46,5 +47,15 @@ public class MainActivity2 extends AppCompatActivity {
             textView.setVisibility(View.VISIBLE);
             button.setVisibility(View.VISIBLE);
         }
+    }
+
+    //add item button function
+    public void add_item_button(){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(MainActivity2.this ,MainActivity3.class);
+                startActivity(intent);
+            }
+        });
     }
 }
