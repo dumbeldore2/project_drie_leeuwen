@@ -43,6 +43,9 @@ public class MainActivity2_adapter extends ArrayAdapter<String> {
         textView1.setText(id[position]);
         aSwitch.setText(main[position]);
 
+        //voor als de switch word aangeraakt , hierin zullen de objecten dan gemaakt worden en
+        // dan doorgestuurd worden naar der database voor dan in een "next" bestand te komen
+        // zodat alles duidelijk lijkt
         aSwitch.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (aSwitch.isChecked() == true){
