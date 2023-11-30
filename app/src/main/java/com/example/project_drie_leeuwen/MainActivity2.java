@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -54,9 +56,7 @@ public class MainActivity2 extends AppCompatActivity {
         //test - System.out.println(mode);
         check_mode(mode);
         add_item_button();
-        for (int i = 0; i < database.t1c0().length; i++){
-            System.out.println(database.t1c0()[i]);
-        }
+
     }
 
     public void check_mode(String mode){
@@ -76,4 +76,5 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
     }
+
 }

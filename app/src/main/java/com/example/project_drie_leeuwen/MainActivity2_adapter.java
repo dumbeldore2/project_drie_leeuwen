@@ -2,13 +2,16 @@ package com.example.project_drie_leeuwen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity2_adapter extends ArrayAdapter<String> {
@@ -35,10 +38,20 @@ public class MainActivity2_adapter extends ArrayAdapter<String> {
         View row = layoutInflater.inflate(R.layout.activity_main2_list_item, parent, false);
 
         TextView textView1 = row.findViewById(R.id.text1);
-        TextView textView2 = row.findViewById(R.id.text2);
+        Switch aSwitch = row.findViewById(R.id.switch1);
 
         textView1.setText(id[position]);
-        textView2.setText(main[position]);
+        aSwitch.setText(main[position]);
+
+        aSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                if (aSwitch.isChecked() == true){
+                    row.setBackgroundColor(Color.GREEN);
+                } else {
+                    row.setBackgroundColor(Color.WHITE);
+                }
+            }
+        });
 
         return row;
     }
