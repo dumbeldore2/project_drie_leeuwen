@@ -109,4 +109,20 @@ public class Database extends SQLiteOpenHelper {
         }
         return outs;
     }
+    //get mains
+    public String [] t1c1(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select "+ T1C1 + " from " + DATABASE_TABLE_1,
+                null);
+
+        String[] outs = new String[cursor.getCount()];
+        for (int i = 0; i <= cursor.getCount(); i++){
+            if (cursor.moveToPosition(i)){
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append(cursor.getString(0));
+                outs[i] = stringBuffer.toString();
+            }
+        }
+        return outs;
+    }
 }

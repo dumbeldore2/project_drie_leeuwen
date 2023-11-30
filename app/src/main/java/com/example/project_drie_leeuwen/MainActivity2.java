@@ -13,6 +13,9 @@ public class MainActivity2 extends AppCompatActivity {
     //init database
     Database database;
 
+    //initen van de listview
+    MainActivity2_adapter mainActivity2Adapter;
+
     //init de layouts
     Button button, button2;
     ListView listView;
@@ -35,6 +38,12 @@ public class MainActivity2 extends AppCompatActivity {
 
         listView = findViewById(R.id.list);
         textView = findViewById(R.id.text1);
+
+        //conecten van de adapter
+        mainActivity2Adapter =new MainActivity2_adapter(MainActivity2.this, database.t1c0(),
+                database.t1c1());
+        //listview ook aanpassen hier
+        listView.setAdapter(mainActivity2Adapter);
 
         //intent
         Intent intent = getIntent();
