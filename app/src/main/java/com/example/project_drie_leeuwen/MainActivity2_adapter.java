@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 public class MainActivity2_adapter extends ArrayAdapter<String> {
     Context context;
-
     //data dat in de list item gaat
     String id [];
     String main [];
@@ -46,6 +45,7 @@ public class MainActivity2_adapter extends ArrayAdapter<String> {
         //voor als de switch word aangeraakt , hierin zullen de objecten dan gemaakt worden en
         // dan doorgestuurd worden naar der database voor dan in een "next" bestand te komen
         // zodat alles duidelijk lijkt
+        //background mag nog aangepast worden aan de nodige kleur
         aSwitch.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (aSwitch.isChecked() == true){
