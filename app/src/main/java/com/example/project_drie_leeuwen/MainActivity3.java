@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,7 @@ public class MainActivity3 extends AppCompatActivity {
     EditText editText,editText2;
 
     //button initen
-    Button button;
+    Button button,button1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,11 @@ public class MainActivity3 extends AppCompatActivity {
 
         //buttin conecten
         button = findViewById(R.id.button);
+        button1 = findViewById(R.id.button1);
 
         //functions
         butt_fun();
+        butt1_fun();
     }
 
     //function add to database
@@ -50,6 +53,18 @@ public class MainActivity3 extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity3.this, MainActivity2.class);
                 add_to_database(get_from_editText1(), get_from_editText2());
                 intent.putExtra("mode","admin");
+                startActivity(intent);
+            }
+        });
+    }
+
+    //een button rechtstreeks naar de camera van het aparaat
+    public void butt1_fun(){
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivity(intent);
             }
         });
