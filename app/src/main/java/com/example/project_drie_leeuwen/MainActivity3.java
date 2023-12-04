@@ -1,15 +1,32 @@
 package com.example.project_drie_leeuwen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity3 extends AppCompatActivity {
+
+    //package name
+    String packageName = BuildConfig.APPLICATION_ID;
+
     //database initen
     Database database;
 
@@ -18,6 +35,9 @@ public class MainActivity3 extends AppCompatActivity {
 
     //button initen
     Button button,button1;
+
+    //imageview initen
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +55,9 @@ public class MainActivity3 extends AppCompatActivity {
         //buttin conecten
         button = findViewById(R.id.button);
         button1 = findViewById(R.id.button1);
+
+        //imageview conecten
+        imageView = findViewById(R.id.imageview1);
 
         //functions
         butt_fun();
@@ -63,9 +86,17 @@ public class MainActivity3 extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivity(intent);
+                if (ContextCompat.checkSelfPermission(MainActivity3.this,
+                        android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    // Request the permission
+                    int CAMERA_PERMISSION_REQUEST_CODE = 1;
+                    ActivityCompat.requestPermissions(MainActivity3.this,
+                            new String[]{android.Manifest.permission.CAMERA},
+                            CAMERA_PERMISSION_REQUEST_CODE);
+                } else {
+                    // Permission is already granted, proceed with camera operation
+                    dispatchTakePictureIntent();
+                }
             }
         });
     }
@@ -83,4 +114,45 @@ public class MainActivity3 extends AppCompatActivity {
         out += editText2.getText();
         return out;
     }
+
+    //chatgpt help
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Uri imageUri;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Handle error occurred while creating the File
+                ex.printStackTrace();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                imageUri = FileProvider.getUriForFile(this, packageName+".provider", photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        return File.createTempFile(imageFileName, ".jpg", storageDir);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            // The image has been captured successfully, you can use the imageUri to access the captured image
+            // For example, display it in an ImageView
+            imageView.setImageURI(imageUri);
+        }
+    }
+
+
 }
