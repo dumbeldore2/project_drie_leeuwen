@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import java.util.Locale;
 
 public class MainActivity3 extends AppCompatActivity {
 
+    private static final int PICK_IMAGE_REQUEST_CODE = 1;
     //package name
     String packageName = BuildConfig.APPLICATION_ID;
 
@@ -34,7 +36,7 @@ public class MainActivity3 extends AppCompatActivity {
     EditText editText,editText2;
 
     //button initen
-    Button button,button1;
+    Button button,button1,button2;
 
     //imageview initen
     ImageView imageView;
@@ -55,6 +57,7 @@ public class MainActivity3 extends AppCompatActivity {
         //buttin conecten
         button = findViewById(R.id.button);
         button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
 
         //imageview conecten
         imageView = findViewById(R.id.imageview1);
@@ -62,6 +65,7 @@ public class MainActivity3 extends AppCompatActivity {
         //functions
         butt_fun();
         butt1_fun();
+        butt2_fun();
     }
 
     //function add to database
@@ -97,6 +101,15 @@ public class MainActivity3 extends AppCompatActivity {
                     // Permission is already granted, proceed with camera operation
                     dispatchTakePictureIntent();
                 }
+            }
+        });
+    }
+
+    public void butt2_fun(){
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(MainActivity3.this, MainActivity4.class);
+                startActivity(intent);
             }
         });
     }
@@ -153,6 +166,4 @@ public class MainActivity3 extends AppCompatActivity {
             imageView.setImageURI(imageUri);
         }
     }
-
-
 }

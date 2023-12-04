@@ -50,6 +50,17 @@ public class Database extends SQLiteOpenHelper {
 
         sqLiteDatabase.insert(DATABASE_TABLE_1, null, contentValues);
     }
+    //add function2 met image path
+    public void addToTable1(String main, String next,String path) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(T1C1, main);
+        contentValues.put(T1C2, next);
+        contentValues.put(T1C3, path);
+
+        sqLiteDatabase.insert(DATABASE_TABLE_1, null, contentValues);
+    }
 
     //get t0c1 with id
     public String getT1c1(String id){
