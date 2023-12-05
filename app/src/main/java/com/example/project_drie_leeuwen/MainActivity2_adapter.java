@@ -52,6 +52,7 @@ public class MainActivity2_adapter extends ArrayAdapter<String> {
 
         if (!fotoids[position].equals("null")){
             imageView.setImageBitmap(bitmap);
+            imageView.setRotation(90f);
         }
 
         //voor als de switch word aangeraakt , hierin zullen de objecten dan gemaakt worden en

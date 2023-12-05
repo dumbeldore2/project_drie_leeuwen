@@ -84,10 +84,11 @@ public class MainActivity3 extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getStringExtra("path") != null){
             imagePath = intent.getStringExtra("path");
-            System.out.println(imagePath);
+            //System.out.println(imagePath);
             if (imagePath.length() > 5){
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
                 imageView.setImageBitmap(bitmap);
+                imageView.setRotation(90f);
             }
         }
     }
@@ -198,6 +199,8 @@ public class MainActivity3 extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             // The image has been captured successfully, you can use the imageUri to access the captured image
             // For example, display it in an ImageView
+            imagePath = imageUri.getPath();
+            System.out.println("/storage/emulated/0/"+imagePath);
             imageView.setImageURI(imageUri);
         }
     }

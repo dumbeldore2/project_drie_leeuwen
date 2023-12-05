@@ -43,6 +43,7 @@ public class MainActivity4_adapter extends ArrayAdapter<String> {
         Bitmap bitmap = BitmapFactory.decodeFile(images[position].getAbsolutePath());
         textView1.setText(id[position]);
         imageView.setImageBitmap(bitmap);
+        imageView.setRotation(90f);
 
         return row;
     }
