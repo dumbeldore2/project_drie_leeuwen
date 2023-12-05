@@ -7,6 +7,8 @@ import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,6 +31,9 @@ public class MainActivity3 extends AppCompatActivity {
     //package name
     String packageName = BuildConfig.APPLICATION_ID;
 
+    //intent4 path image
+    String imagePath;
+
     //database initen
     Database database;
 
@@ -45,6 +50,9 @@ public class MainActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        //string path
+        imagePath = "null";
 
         //database conecten
         database = new Database(this);
@@ -63,9 +71,23 @@ public class MainActivity3 extends AppCompatActivity {
         imageView = findViewById(R.id.imageview1);
 
         //functions
+        intent4path_fun();
         butt_fun();
         butt1_fun();
         butt2_fun();
+    }
+
+    //intent function
+    public void intent4path_fun(){
+        Intent intent = getIntent();
+        if (intent.getStringExtra("path") != null){
+            imagePath = intent.getStringExtra("path");
+            System.out.println(imagePath);
+            if (imagePath.length() > 5){
+                Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+                imageView.setImageBitmap(bitmap);
+            }
+        }
     }
 
     //function add to database
