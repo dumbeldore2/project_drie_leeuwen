@@ -1,5 +1,6 @@
 package com.example.project_drie_leeuwen;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -75,6 +76,7 @@ public class MainActivity3 extends AppCompatActivity {
         butt_fun();
         butt1_fun();
         butt2_fun();
+
     }
 
     //intent function
@@ -95,13 +97,24 @@ public class MainActivity3 extends AppCompatActivity {
         database.addToTable1(main,second);
     }
 
+    //function add to database
+    public void add_to_database2(String main, String second,String third){
+        database.addToTable1(main,second,third);
+    }
+
     //button function
     public void butt_fun(){
         button.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(MainActivity3.this, MainActivity2.class);
-                add_to_database(get_from_editText1(), get_from_editText2());
-                intent.putExtra("mode","admin");
+
+                if (!imagePath.equals("null")){
+                    add_to_database2(get_from_editText1(), get_from_editText2(), imagePath);
+                    intent.putExtra("mode","admin");
+                } else {
+                    add_to_database2(get_from_editText1(), get_from_editText2(), "null");
+                    intent.putExtra("mode","admin");
+                }
                 startActivity(intent);
             }
         });

@@ -43,7 +43,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         //conecten van de adapter
         mainActivity2Adapter =new MainActivity2_adapter(MainActivity2.this, database.t1c0(),
-                database.t1c1());
+                database.t1c1(),database.t1c3());
         //listview ook aanpassen hier
         listView.setAdapter(mainActivity2Adapter);
 
