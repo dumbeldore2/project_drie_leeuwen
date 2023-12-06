@@ -200,7 +200,9 @@ public class MainActivity3 extends AppCompatActivity {
             // The image has been captured successfully, you can use the imageUri to access the captured image
             // For example, display it in an ImageView
             imagePath = imageUri.getPath();
-            System.out.println("/storage/emulated/0/"+imagePath);
+            String shorter = imagePath.substring(16);
+            //System.out.println("/storage/emulated/0/"+ shorter);
+            imagePath = "/storage/emulated/0/"+ shorter;
             imageView.setImageURI(imageUri);
         }
     }
